@@ -20,6 +20,15 @@ def message_hello():
     return {"message": "hello world !!!"}
 
 
+@app.get("/get-product/{id}", response_model=ProductResponse)
+def get_product_by_id(id: int):
+    if id not in products_db:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"product by id : {id} not found",
+        )
+    return products_db[id]
+
 @app.post("/create-product", response_model=ProductResponse)
 def create_products(products: ProductCreater):
     return {"id": 101, **products.model_dump()}
