@@ -29,6 +29,7 @@ def get_product_by_id(id: int):
         )
     return products_db[id]
 
+
 @app.post("/create-product", response_model=ProductResponse)
 def create_products(products: ProductCreater):
     return {"id": 101, **products.model_dump()}
