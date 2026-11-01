@@ -1,47 +1,21 @@
 from fastapi import FastAPI, HTTPException, status
-from products_schema import ProductCreater, ProductResponse, ProductUpdate
+from schemas.products_schema import ProductCreate, ProductResponse, ProductUpdate
 
-# creating app
-app = FastAPI(title="prac pydantic")
-
-
-products_db = {
-    1: {
-        "id": 1,
-        "name": "Keyboard",
-        "price": 49.99,
-        "quantity": 5,
-    }
-}
+app = FastAPI(title="Product API")
 
 
-@app.get("/")
-def message_hello():
-    return {"message": "hello world !!!"}
 
 
-@app.get("/get-product/{id}", response_model=ProductResponse)
-def get_product_by_id(id: int):
-    if id not in products_db:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"product by id : {id} not found",
-        )
-    return products_db[id]
+@app.post("/create-products", response_model=ProductResponse)
+def create_product(product: ProductCreate):
+    pass
 
 
-@app.post("/create-product", response_model=ProductResponse)
-def create_products(products: ProductCreater):
-    return {"id": 101, **products.model_dump()}
+@app.patch("/update-product/{product_id:int}", response_model=ProductResponse)
+def update_product_by_id(product_id: int, product: ProductUpdate):
+    pass
 
 
-@app.patch("/update-product/{product_id}")
-def update_product(product_id: int, update: ProductUpdate):
-    if product_id not in products_db:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"product not found by id: {product_id}",
-        )
-    change_product = update.model_dump(exclude_unset=True)
-    products_db[product_id].update(change_product)
-    return products_db[product_id]
+@app.delete("delete-product/{product_id:int}", response_model=ProductResponse)
+def delete_product_by_id(product_id: int):
+    pass
