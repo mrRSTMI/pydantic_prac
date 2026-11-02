@@ -7,7 +7,7 @@ router = APIRouter(prefix="/api/product", tags=["Products"])
 
 @router.get("/all-products", response_model=ProductResponse)
 def get_all_products():
-    return {"all products": products}
+    return products
 
 
 @router.get("/product/{product_id:int}", response_model=ProductResponse)
