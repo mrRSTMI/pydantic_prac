@@ -5,6 +5,7 @@ products = [
         "price": 13.23,
         "quantity": 0,
         "category": {"name_category": "digital"},
+        "website": "https://www.google.com",
     },
     {
         "id": 2,
@@ -12,6 +13,7 @@ products = [
         "price": 3.23,
         "quantity": 0,
         "category": {"name_category": "digital"},
+        "website": "https://www.google.com",
     },
     {
         "id": 3,
@@ -19,6 +21,7 @@ products = [
         "price": 333.23,
         "quantity": 0,
         "category": {"name_category": "digital"},
+        "website": "https://www.google.com",
     },
     {
         "id": 4,
@@ -26,5 +29,6 @@ products = [
         "price": 500.23,
         "quantity": 0,
         "category": {"name_category": "digital"},
+        "website": "https://www.google.com",
     },
 ]

@@ -42,3 +42,4 @@ class ProductResponse(BaseProductsModel):
     price: PositiveFloat
     quantity: NonNegativeInt
     category: Category
+    website: HttpUrl
