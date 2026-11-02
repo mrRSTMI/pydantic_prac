@@ -8,15 +8,12 @@ from pydantic import (
     EmailStr,
     HttpUrl,
     ConfigDict,
-    NonNegativeInt
+    NonNegativeInt,
 )
 
 
 class BaseProductsModel(BaseModel):
-    model_config = ConfigDict(
-        str_strip_whitespace=True,
-        extra="forbid"
-    )
+    model_config = ConfigDict(str_strip_whitespace=True, extra="forbid")
 
 
 class Category(BaseProductsModel):
@@ -24,16 +21,16 @@ class Category(BaseProductsModel):
 
 
 class ProductCreate(BaseProductsModel):
-    name: str = Field(min_length=3, max_length=50)
-    price: PositiveFloat 
+    product_name: str = Field(min_length=3, max_length=50)
+    price: PositiveFloat
     quantity: NonNegativeInt
     category: Category
     website: HttpUrl
 
 
 class ProductUpdate(BaseProductsModel):
-    name: str | None = Field(min_length=3, max_length=50, default=None)
-    price: PositiveFloat | None = Field( default=None)
+    product_name: str | None = Field(min_length=3, max_length=50, default=None)
+    price: PositiveFloat | None = Field(default=None)
     quantity: NonNegativeInt | None = Field(default=None)
     category: Category | None = Field(default=None)
     website: HttpUrl | None = Field(default=None)
@@ -41,7 +38,7 @@ class ProductUpdate(BaseProductsModel):
 
 class ProductResponse(BaseProductsModel):
     id: PositiveInt
-    name: str
+    product_name: str
     price: PositiveFloat
     quantity: NonNegativeInt
     category: Category

@@ -5,7 +5,7 @@ from database.data import products
 router = APIRouter(prefix="/api/product", tags=["Products"])
 
 
-@router.get("/all-products", response_model=ProductResponse)
+@router.get("/all-products", response_model=list[ProductResponse])
 def get_all_products():
     return products
 
