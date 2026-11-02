@@ -12,12 +12,15 @@ def get_all_products():
 
 @router.get("/product/{product_id:int}", response_model=ProductResponse)
 def get_product_by_id(product_id: int):
+    for p in products:
+        if p["id"] == product_id:
+            return p
     if not product_id in products:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail=f"prodcut by id: {product_id} not found",
         )
-    return products[product_id]
+
 
 
 @router.post("/new-product", response_model=ProductResponse)
