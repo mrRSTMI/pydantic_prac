@@ -47,13 +47,14 @@ def update_prodcut_by_id(product_id: int, updating_product: ProductUpdate):
     )
 
 
-@product_router.delete("/delete-product/{product_id:int}")
-def delete_product_by_id(prodcut_id: int):
+@product_router.delete("/delete-product/{id_deleted:int}")
+def delete_product_by_id(id_deleted: int):
+    print("hello delete !!!")
     for p in products:
-        if p["id"] == prodcut_id:
+        if p["id"] == id_deleted:
             products.remove(p)
             return {"message": f"product is deleted!!!"}
     raise HTTPException(
         status_code=status.HTTP_404_NOT_FOUND,
-        detail=f"product by id: {prodcut_id} not found ! ! !",
+        detail=f"product by id: {id_deleted} not found ! ! !",
     )
